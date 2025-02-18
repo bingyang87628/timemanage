@@ -3,6 +3,7 @@ class StatisticsUI {
         this.statistics = new Statistics();
         this.initializeCharts();
         this.updateTodayOverview();
+        this.initializeDataActions();
     }
 
     updateTodayOverview() {
@@ -90,6 +91,35 @@ class StatisticsUI {
                         }
                     }
                 }
+            }
+        });
+    }
+
+    initializeDataActions() {
+        // 导出按钮
+        const exportBtn = document.getElementById('exportBtn');
+        exportBtn.addEventListener('click', () => {
+            this.statistics.exportData();
+        });
+
+        // 导入文件处理
+        const importFile = document.getElementById('importFile');
+        importFile.addEventListener('change', async (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const success = await this.statistics.importData(file);
+                
+                if (success) {
+                    alert('数据导入成功！');
+                    // 刷新图表和统计
+                    this.initializeCharts();
+                    this.updateTodayOverview();
+                } else {
+                    alert('数据导入失败，请检查文件格式是否正确。');
+                }
+                
+                // 清除文件选择
+                e.target.value = '';
             }
         });
     }

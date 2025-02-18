@@ -18,7 +18,15 @@
                     <button class="filter-btn active" data-range="week">本周</button>
                     <button class="filter-btn" data-range="month">本月</button>
                 </div>
-                <button id="exportBtn" class="export-btn">导出报告</button>
+                <div class="data-actions">
+                    <button id="exportBtn" class="action-btn">
+                        <span class="icon">📤</span> 导出数据
+                    </button>
+                    <label for="importFile" class="action-btn">
+                        <span class="icon">📥</span> 导入数据
+                    </label>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                </div>
             </div>
         </header>
 

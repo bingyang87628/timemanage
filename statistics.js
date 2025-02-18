@@ -166,4 +166,49 @@ class Statistics {
             
         return productiveHours;
     }
+
+    // 导出数据
+    exportData() {
+        const data = {
+            version: '1.0',
+            exportDate: new Date().toISOString(),
+            statistics: this.data
+        };
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `pomodoro-stats-${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // 导入数据
+    async importData(file) {
+        try {
+            const text = await file.text();
+            const importedData = JSON.parse(text);
+            
+            // 验证数据格式
+            if (!importedData.version || !importedData.statistics) {
+                throw new Error('无效的数据格式');
+            }
+
+            // 合并数据
+            this.data = {
+                ...this.data,
+                ...importedData.statistics
+            };
+
+            this.saveData();
+            return true;
+        } catch (error) {
+            console.error('导入数据失败:', error);
+            return false;
+        }
+    }
 }
