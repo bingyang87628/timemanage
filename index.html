@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>番茄时钟</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="today-overview">
+            <div class="stat-card">
+                <h3>今日番茄钟</h3>
+                <div class="stat-value" id="todayPomodoros">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>专注时间</h3>
+                <div class="stat-value" id="todayFocusTime">0分钟</div>
+            </div>
+            <div class="stat-card">
+                <h3>完成任务</h3>
+                <div class="stat-value" id="todayTasks">0</div>
+            </div>
+            <a href="statistics.html" class="stats-link">查看详细统计</a>
+        </div>
+        <h1 class="title">番茄时钟</h1>
+        <div class="app-container">
+            <!-- 左侧计时器部分 -->
+            <div class="timer-container">
+                <div class="timer">
+                    <div class="timer-circle">
+                        <svg class="progress-ring" width="320" height="320">
+                            <circle class="progress-ring__circle-bg" cx="160" cy="160" r="150" />
+                            <circle class="progress-ring__circle" cx="160" cy="160" r="150" />
+                        </svg>
+                        
+                        <div class="timer-content">
+                            <div class="time-display">
+                                <span id="minutes">25</span>:<span id="seconds">00</span>
+                            </div>
+                            <div class="status" id="status">工作时间</div>
+                            <div class="current-task" id="currentTask">未选择任务</div>
+                            
+                            <div class="time-settings">
+                                <button class="time-preset active" data-time="25">25分钟</button>
+                                <button class="time-preset" data-time="45">45分钟</button>
+                                <button class="time-preset" data-time="60">60分钟</button>
+                                <div class="custom-time">
+                                    <input type="number" id="customTime" min="1" max="120" placeholder="自定义分钟">
+                                    <button id="applyCustomTime">确定</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="controls">
+                        <button id="startBtn" class="btn">
+                            <span class="icon">▶</span>
+                        </button>
+                        <button id="pauseBtn" class="btn" disabled>
+                            <span class="icon">⏸</span>
+                        </button>
+                        <button id="resetBtn" class="btn">
+                            <span class="icon">⟳</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧任务列表部分 -->
+            <div class="tasks-container">
+                <div class="tasks-header">
+                    <h2>任务列表</h2>
+                    <div class="task-input-container">
+                        <input type="text" id="taskInput" placeholder="添加新任务..." maxlength="50">
+                        <button id="addTaskBtn" class="btn-add">添加</button>
+                    </div>
+                </div>
+                
+                <div class="tasks-list" id="tasksList">
+                    <!-- 任务列表将通过 JavaScript 动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 音频文件 -->
+    <audio id="alertSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+    
+    <script src="confetti.js"></script>
+    <script src="statistics.js"></script>
+    <script src="tasks.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

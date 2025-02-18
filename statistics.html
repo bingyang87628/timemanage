@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>番茄时钟 - 数据统计</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+</head>
+<body class="statistics-page">
+    <div class="container">
+        <header class="stats-header">
+            <h1>专注数据分析</h1>
+            <div class="header-actions">
+                <a href="index.html" class="back-link">返回主页</a>
+                <div class="date-filter">
+                    <button class="filter-btn active" data-range="week">本周</button>
+                    <button class="filter-btn" data-range="month">本月</button>
+                </div>
+                <button id="exportBtn" class="export-btn">导出报告</button>
+            </div>
+        </header>
+
+        <div class="stats-overview">
+            <div class="stat-card highlight">
+                <h3>今日番茄钟</h3>
+                <div class="stat-value" id="todayPomodoros">0</div>
+                <div class="stat-trend positive">+20% ↑</div>
+            </div>
+            <div class="stat-card highlight">
+                <h3>专注时间</h3>
+                <div class="stat-value" id="todayFocusTime">0分钟</div>
+                <div class="stat-trend positive">+15% ↑</div>
+            </div>
+            <div class="stat-card highlight">
+                <h3>完成任务</h3>
+                <div class="stat-value" id="todayTasks">0</div>
+                <div class="stat-trend negative">-5% ↓</div>
+            </div>
+            <div class="stat-card highlight">
+                <h3>效率评分</h3>
+                <div class="stat-value">85</div>
+                <div class="stat-trend neutral">持平</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-card wide">
+                <div class="chart-header">
+                    <h3>专注时间趋势</h3>
+                    <div class="chart-actions">
+                        <button class="chart-type-btn active" data-type="line">折线图</button>
+                        <button class="chart-type-btn" data-type="bar">柱状图</button>
+                    </div>
+                </div>
+                <canvas id="weeklyChart"></canvas>
+                <div class="chart-insights">
+                    <i class="insight-icon">💡</i>
+                    <p>本周工作效率最高的是周三，建议保持这个节奏</p>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>任务效率分析</h3>
+                <canvas id="taskEfficiencyChart"></canvas>
+                <div class="chart-insights">
+                    <i class="insight-icon">📊</i>
+                    <p>编程任务完成效率最高，建议在最佳时间段处理此类任务</p>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>黄金时间分布</h3>
+                <canvas id="timeDistributionChart"></canvas>
+                <div class="chart-insights">
+                    <i class="insight-icon">⭐</i>
+                    <p>您在9:00-11:00期间专注度最高</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <h2>数据分析建议</h2>
+            <div class="analysis-cards" id="analysisContainer">
+                <!-- 分析建议将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="statistics.js"></script>
+    <script src="statisticsUI.js"></script>
+</body>
+</html> 
